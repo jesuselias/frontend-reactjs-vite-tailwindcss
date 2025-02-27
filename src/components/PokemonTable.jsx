@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import usePokemonList from "../hooks/usePokemonList";
+import { usePokemonList } from '../hooks/usePokemonList';
 import axios from "axios";
 
 const PokemonTable = () => {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [selectedPokemon, setSelectedPokemon] = useState(null);
-  const { pokemons, loading, total } = usePokemonList(page);
+  const { pokemons, loading, total } = usePokemonList(page, 12, search);
   const [pokemonCountByLetter, setPokemonCountByLetter] = useState({});
   const [showSuggestions, setShowSuggestions] = useState(false);
 
@@ -160,8 +160,8 @@ const PokemonTable = () => {
               <tbody>
                 {Object.entries(pokemonCountByLetter).map(([letter, count]) => (
                   <tr key={letter} className="border border-gray-600">
-                    <td className="p-2 text-gray-300">{letter}</td>
-                    <td className="p-2 text-gray-300">{count}</td>
+                     <td className="border border-gray-600 p-2 text-gray-300 text-center">{letter}</td>
+                     <td className="border border-gray-600 p-2 text-gray-300 text-center">{count}</td>
                   </tr>
                 ))}
               </tbody>
